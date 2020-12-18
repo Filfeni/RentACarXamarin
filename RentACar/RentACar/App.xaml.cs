@@ -30,13 +30,13 @@ namespace RentACar
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<HomeTabbedPage>("HomeTabs");
-            containerRegistry.RegisterForNavigation<AddCarPage>("AddCar");
-            containerRegistry.RegisterForNavigation<ExplorePage>("Explore");
-            containerRegistry.RegisterForNavigation<LogInPage>("Login");
-            containerRegistry.RegisterForNavigation<MorePage>("More");
-            containerRegistry.RegisterForNavigation<RegisterPage>("Register");
-            containerRegistry.RegisterForNavigation<RentPage>("Rent");
+            containerRegistry.RegisterForNavigation<HomeTabbedPage>(Config.HomePage);
+            containerRegistry.RegisterForNavigation<AddCarPage>(Config.AddCarPage);
+            containerRegistry.RegisterForNavigation<ExplorePage>(Config.ExplorePage);
+            containerRegistry.RegisterForNavigation<LogInPage>(Config.LogInPage);
+            containerRegistry.RegisterForNavigation<MorePage>(Config.MorePage);
+            containerRegistry.RegisterForNavigation<RegisterPage>(Config.RegisterPage);
+            containerRegistry.RegisterForNavigation<RentPage>(Config.RentPage);
         }
 
         protected override void OnInitialized()

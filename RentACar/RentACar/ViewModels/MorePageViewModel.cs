@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RentACar.ViewModels
 {
-    public class MorePageViewModel
+    public class MorePageViewModel : BaseViewModel
     {
     }
 }
