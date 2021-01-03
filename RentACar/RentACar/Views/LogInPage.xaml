@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RentACar.Views.LogInPage">
+             x:Class="RentACar.Views.LogInPage"
+             Title="Login">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Log In Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Rent Car" />
+            <Entry Placeholder="Username" Text="{Binding User.Username}"></Entry>
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding User.Password}"></Entry>
+            <Button Text="Log In" Command="{Binding LogInCommand}"></Button>
+            <Button Text="Sign Up" Command="{Binding SignUpCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

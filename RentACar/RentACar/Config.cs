@@ -8,7 +8,10 @@ namespace RentACar
     {
         //API
         public const string BaseApiUrl = "https://xamrentapi.azurewebsites.net";
-        public const string BrandsApiUrl = "/api/const/brands";
+        public const string BrandsRoute = "/api/const/brands";
+        public const string LoginRoute = "/api/authenticate/login";
+        public const string RegisterRoute = "/api/authenticate/register";
+
 
 
         //NAVIGATION
@@ -21,7 +24,7 @@ namespace RentACar
         public const string RentPage = "Rent";
 
         public const string HomeTabbedPageNavigation = "/HomeTabs";
-        public const string LoginNavigation = "/Login";
-        public const string RegisterNavigation = "/Login/NavigationPage/Register";
+        public const string LoginNavigation = "/NavigationPage/Login";
+        public const string RegisterNavigation = "/NavigationPage/Login/Register";
     }
 }
