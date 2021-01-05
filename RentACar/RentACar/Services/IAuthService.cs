@@ -4,7 +4,8 @@ namespace RentACar.Services
 {
     public interface IAuthService
     {
-        Task Authorize();
-        void SignOut();
+        //Task<bool> IsAuthorized();
+        Task<bool> Authorize();
+        Task SignOut();
     }
 }

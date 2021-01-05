@@ -2,12 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentACar.Views.AddCarPage"
-             Title="Add Car">
+             Title="Add Car"
+             x:Name="addCarPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add New Car" Command="{Binding AddCarCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Add Car Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ListView ItemsSource="{Binding CarList}" SelectedItem="{Binding SelectedCar}" SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Remove" Command="{Binding BindingContext.DeleteCarCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" IsDestructive="True"></MenuItem>
+                            <MenuItem Text="View Details" Command="{Binding BindingContext.CarDetailsCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}"></MenuItem>
+                        </ViewCell.ContextActions>
+                        <StackLayout>
+                            <Label Text="{Binding Model}"></Label>
+                            <Label Text="{Binding LicensePlate}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

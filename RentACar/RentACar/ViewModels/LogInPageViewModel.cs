@@ -53,10 +53,5 @@ namespace RentACar.ViewModels
         {
             await NavigationService.NavigateAsync(Config.RegisterNavigation);
         }
-
-        public void Initialize(INavigationParameters parameters)
-        {
-            
-        }
     }
 }

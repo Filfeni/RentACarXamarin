@@ -10,21 +10,33 @@ namespace RentACar.Services
     public class AuthService : IAuthService
     {
         public INavigationService NavigationService { get; set; }
-        public bool IsAuthorized { get; set; }
+        //public async Task<bool> IsAuthorized()
+        //{
+        //    string token = await SecureStorage.GetAsync("Token");
+        //    string expires = await SecureStorage.GetAsync("Expires");
+        //    bool result = string.IsNullOrEmpty(token) ? false : (DateTime.Parse(expires) > DateTime.UtcNow);
+        //    return result;
+        //}
         public AuthService(INavigationService navigationService)
         {
             NavigationService = navigationService;
         }
 
-        public async Task Authorize()
+        public async Task<bool> Authorize()
         {
             try
             {
                 string token = await SecureStorage.GetAsync("Token");
                 string expires = await SecureStorage.GetAsync("Expires");
-                if (string.IsNullOrEmpty(token) || DateTime.Parse(expires) <= DateTime.Now)
+                if (string.IsNullOrEmpty(token))
                 {
                     await NavigationService.NavigateAsync(Config.LoginNavigation);
+                    return false;
+                }
+                if (DateTime.Parse(expires) <= DateTime.UtcNow)
+                {
+                    await NavigationService.NavigateAsync(Config.LoginNavigation);
+                    return false;
                 }
 
             }
@@ -32,13 +44,13 @@ namespace RentACar.Services
             {
                 await NavigationService.NavigateAsync(Config.LoginNavigation);
             }
-            
+            return true;
         }
 
-        public void SignOut()
+        public async Task SignOut()
         {
-            SecureStorage.Remove("Token");
-            SecureStorage.Remove("Expires");
+            SecureStorage.RemoveAll();
+            await NavigationService.NavigateAsync(Config.LoginNavigation);
         }
     }
 }

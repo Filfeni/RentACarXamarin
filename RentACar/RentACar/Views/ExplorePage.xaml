@@ -5,9 +5,10 @@
              Title="Explore">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Explore Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Image Aspect="AspectFill" Source="explorebackground.jpg"></Image>
+            <Entry Placeholder="¿What car are you looking for?"></Entry>
+            <Label Text="Go on a trip"></Label>
+            <Button Text="Search"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

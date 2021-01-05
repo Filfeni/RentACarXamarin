@@ -5,9 +5,10 @@
              Title="More">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="More Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Sign Out"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand" 
+                    Command="{Binding SignOutCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

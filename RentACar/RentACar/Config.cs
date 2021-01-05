@@ -11,6 +11,7 @@ namespace RentACar
         public const string BrandsRoute = "/api/const/brands";
         public const string LoginRoute = "/api/authenticate/login";
         public const string RegisterRoute = "/api/authenticate/register";
+        public const string MyCarsRoute = "/api/mycars";
 
 
 
@@ -23,7 +24,8 @@ namespace RentACar
         public const string RegisterPage = "Register";
         public const string RentPage = "Rent";
 
-        public const string HomeTabbedPageNavigation = "/HomeTabs";
+        public const string HomeTabbedPageNavigation = "/NavigationPage/HomeTabs";
+        public const string NewCarNavigation = "/NavigationPage/HomeTabs/NewCar";
         public const string LoginNavigation = "/NavigationPage/Login";
         public const string RegisterNavigation = "/NavigationPage/Login/Register";
     }

@@ -47,11 +47,12 @@ namespace RentACar
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>(Config.RegisterPage);
             containerRegistry.RegisterForNavigation<RentPage, RentPageViewModel>(Config.RentPage);
             containerRegistry.Register<IApiService,ApiService>();
+            containerRegistry.Register<IAuthService, AuthService>();
         }
 
         protected override void OnInitialized()
         {
-            NavigationService.NavigateAsync(Config.LoginNavigation);
+            NavigationService.NavigateAsync(Config.HomeTabbedPageNavigation);
         }
     }
 }
