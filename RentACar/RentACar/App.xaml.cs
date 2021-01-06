@@ -40,7 +40,8 @@ namespace RentACar
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<HomeTabbedPage, HomeTabbedPageViewModel>(Config.HomePage);
-            containerRegistry.RegisterForNavigation<AddCarPage, AddCarPageViewModel>(Config.AddCarPage);
+            containerRegistry.RegisterForNavigation<MyCarsPage, MyCarsPageViewModel>(Config.MyCarsPage);
+            containerRegistry.RegisterForNavigation<NewCarPage, NewCarPageViewModel>(Config.NewCarPage);
             containerRegistry.RegisterForNavigation<ExplorePage, ExplorePageViewModel>(Config.ExplorePage);
             containerRegistry.RegisterForNavigation<LogInPage, LogInPageViewModel>(Config.LogInPage);
             containerRegistry.RegisterForNavigation<MorePage, MorePageViewModel>(Config.MorePage);

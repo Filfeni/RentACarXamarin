@@ -14,14 +14,19 @@ namespace RentACar.Services
         // AUTHENTICATE
         Task<HttpResponseMessage> LoginUser(UserLogin user);
         Task<HttpResponseMessage> RegisterUser(UserRegister user);
+        Task<HttpResponseMessage> GetUserId();
         // CATALOG
 
         // MYCARS
         Task<HttpResponseMessage> GetMyCars();
+        Task<HttpResponseMessage> PostCar(Car car);
         Task<HttpResponseMessage> DeleteMyCar(int id);
 
         // RESERVATIONS
         // CONSTANTS
-        Task<ObservableCollection<Brand>> GetBrandAsync();
+        Task<HttpResponseMessage> GetBrands();
+        Task<HttpResponseMessage> GetFuelTypes();
+        Task<HttpResponseMessage> GetCategories();
+        
     }
 }

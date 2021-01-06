@@ -19,7 +19,8 @@ namespace RentACar.ViewModels
         public DelegateCommand SignUpCommand { get; private set; }
         public Jwt CurrentJwt { get; set; }
         public UserLogin User { get; set; }
-        public HttpResponseMessage LogInRequest { get; set; }
+        public HttpResponseMessage LogInResponse { get; set; }
+        public HttpResponseMessage UserIdResponse { get; set; }
         public LogInPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService)
         {
             NavigationService = navigationService;
@@ -34,10 +35,11 @@ namespace RentACar.ViewModels
 
         public async void LogIn()
         {
-            LogInRequest = await ApiService.LoginUser(User);
-            if (LogInRequest.IsSuccessStatusCode)
+            LogInResponse = await ApiService.LoginUser(User);
+            if (LogInResponse.IsSuccessStatusCode)
             {
-                string responseContent = await LogInRequest.Content.ReadAsStringAsync();
+                
+                string responseContent = await LogInResponse.Content.ReadAsStringAsync();
                 CurrentJwt = JsonConvert.DeserializeObject<Jwt>(responseContent);
                 await SecureStorage.SetAsync(nameof(CurrentJwt.Token), CurrentJwt.Token);
                 await SecureStorage.SetAsync(nameof(CurrentJwt.Expires), CurrentJwt.Expires.ToString());

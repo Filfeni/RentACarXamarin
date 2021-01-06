@@ -12,7 +12,7 @@ using System.Text;
 
 namespace RentACar.ViewModels
 {
-    public class AddCarPageViewModel : BaseViewModel, INavigatedAware, IInitialize
+    public class MyCarsPageViewModel : BaseViewModel, INavigatedAware, IInitialize
     {
         public INavigationService NavigationService;
         public IApiService ApiService;
@@ -25,7 +25,7 @@ namespace RentACar.ViewModels
         public DelegateCommand AddCarCommand { get; private set; }
         public DelegateCommand<Car> CarDetailsCommand { get; private set; }
         public HttpResponseMessage CarsRequest { get; set; }
-        public AddCarPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
+        public MyCarsPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
         {
             NavigationService = navigationService;
             ApiService = apiService;
@@ -55,7 +55,7 @@ namespace RentACar.ViewModels
             {
                 string responseContent = await CarsRequest.Content.ReadAsStringAsync();
                 Response = JsonConvert.DeserializeObject<Response>(responseContent);
-                await DialogService.DisplayAlertAsync($"{Response.Status}",$"{Response.Message}", "OK");
+                await DialogService.DisplayAlertAsync($"{Response.Status}", $"{Response.Message}", "OK");
                 Refresh();
             }
             else
@@ -75,7 +75,7 @@ namespace RentACar.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            
+
         }
 
         public async void Initialize(INavigationParameters parameters)

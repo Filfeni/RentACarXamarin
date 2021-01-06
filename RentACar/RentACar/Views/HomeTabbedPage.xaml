@@ -8,7 +8,7 @@
   <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
         <local:ExplorePage/>
-        <local:AddCarPage/>
+        <local:MyCarsPage/>
         <local:RentPage/>
         <local:MorePage/>
     </TabbedPage.Children>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RentACar.Views.NewCarPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Model" Text="{Binding NewCar.Model}"/>
+            <Entry Placeholder="Year"  Text="{Binding NewCar.Year}"/>
+            <Entry Placeholder="Color" Text="{Binding NewCar.Color}"/>
+            <Entry Placeholder="License Plate" Text="{Binding NewCar.LicensePlate}"/>
+            <Picker Title="Brand" ItemsSource="{Binding BrandList}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedBrand}"/>
+            <Picker Title="Category" ItemsSource="{Binding CategoryList}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedCategory}"/>
+            <Picker Title="Fuel Types" ItemsSource="{Binding FuelTypeList}" ItemDisplayBinding="{Binding Type}" SelectedItem="{Binding SelectedFuelType}"/>
+            <Switch IsToggled="true"/>
+            <Button Text="Register Car" Command="{Binding AddCarCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

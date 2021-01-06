@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace RentACar.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddCarPage : ContentPage
+    public partial class NewCarPage : ContentPage
     {
-        public AddCarPage()
+        public NewCarPage()
         {
             InitializeComponent();
         }
