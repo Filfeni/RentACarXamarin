@@ -13,7 +13,7 @@ using Prism.Commands;
 
 namespace RentACar.ViewModels
 {
-    public class NewCarPageViewModel : IInitialize
+    public class NewCarPageViewModel : BaseViewModel, IInitialize
     {
         public INavigationService NavigationService;
         public IApiService ApiService;
@@ -38,6 +38,7 @@ namespace RentACar.ViewModels
             DialogService = dialogService;
             AuthorizationService = authorizationService;
             AddCarCommand = new DelegateCommand(AddCar);
+            NewCar = new Car();
         }
 
         public async void Initialize(INavigationParameters parameters)

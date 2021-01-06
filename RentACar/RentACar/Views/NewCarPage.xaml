@@ -11,7 +11,7 @@
             <Picker Title="Brand" ItemsSource="{Binding BrandList}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedBrand}"/>
             <Picker Title="Category" ItemsSource="{Binding CategoryList}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedCategory}"/>
             <Picker Title="Fuel Types" ItemsSource="{Binding FuelTypeList}" ItemDisplayBinding="{Binding Type}" SelectedItem="{Binding SelectedFuelType}"/>
-            <Switch IsToggled="true"/>
+            <Switch IsToggled="{Binding NewCar.Transmission}"/>
             <Button Text="Register Car" Command="{Binding AddCarCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
