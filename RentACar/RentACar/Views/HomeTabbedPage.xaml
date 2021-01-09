@@ -9,7 +9,7 @@
     <TabbedPage.Children>
         <local:ExplorePage/>
         <local:MyCarsPage/>
-        <local:RentPage/>
+        <local:ReservationsPage/>
         <local:MorePage/>
     </TabbedPage.Children>
 </TabbedPage>

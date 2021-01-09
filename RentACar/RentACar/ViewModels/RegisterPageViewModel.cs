@@ -15,7 +15,6 @@ namespace RentACar.ViewModels
         public IApiService ApiService;
         public IPageDialogService DialogService;
         public DelegateCommand SignUpCommand { get; set; }
-        public HttpResponseMessage RegisterRequest { get; set; }
         public UserRegister User { get; set; }
         public Response SubmitResponse { get; set; }
 
@@ -24,22 +23,23 @@ namespace RentACar.ViewModels
             NavigationService = navigationService;
             ApiService = apiService;
             DialogService = dialogService;
+            SignUpCommand = new DelegateCommand(SignUp);
             User = new UserRegister();
         }
 
         public async void SignUp()
         {
-            RegisterRequest = await ApiService.RegisterUser(User);
-            if (RegisterRequest.IsSuccessStatusCode)
+            HttpResponseMessage registerRequest = await ApiService.RegisterUser(User);
+            if (registerRequest.IsSuccessStatusCode)
             {
-                string responseContent = await RegisterRequest.Content.ReadAsStringAsync();
+                string responseContent = await registerRequest.Content.ReadAsStringAsync();
                 SubmitResponse = JsonConvert.DeserializeObject<Response>(responseContent);
                 await DialogService.DisplayAlertAsync($"{SubmitResponse.Status}",$"{SubmitResponse.Message}","OK");
                 await NavigationService.NavigateAsync(Config.LoginNavigation);
             }
             else
             {
-                string responseContent = await RegisterRequest.Content.ReadAsStringAsync();
+                string responseContent = await registerRequest.Content.ReadAsStringAsync();
                 SubmitResponse = JsonConvert.DeserializeObject<Response>(responseContent);
                 await DialogService.DisplayAlertAsync($"{SubmitResponse.Status}", $"{SubmitResponse.Message}", "OK");
             }

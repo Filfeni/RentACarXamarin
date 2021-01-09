@@ -69,7 +69,14 @@ namespace RentACar.Services
         // CATALOG
 
         // RESERVATIONS
-
+        public async Task<HttpResponseMessage> GetMyReservations()
+        {
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("Token");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            var response = await client.GetAsync(string.Join("", new string[] { Config.BaseApiUrl, Config.ReservationsRoute }));
+            return response;
+        }
         // CONSTANTS
         public async Task<HttpResponseMessage> GetBrands()
         {
@@ -105,5 +112,7 @@ namespace RentACar.Services
             var response = await client.GetAsync(string.Join("", new string[] { Config.BaseApiUrl, Config.UserIdRoute }));
             return response;
         }
+
+        
     }
 }

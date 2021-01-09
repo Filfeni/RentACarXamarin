@@ -46,7 +46,8 @@ namespace RentACar
             containerRegistry.RegisterForNavigation<LogInPage, LogInPageViewModel>(Config.LogInPage);
             containerRegistry.RegisterForNavigation<MorePage, MorePageViewModel>(Config.MorePage);
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>(Config.RegisterPage);
-            containerRegistry.RegisterForNavigation<RentPage, RentPageViewModel>(Config.RentPage);
+            containerRegistry.RegisterForNavigation<ReservationsPage, ReservationsPageViewModel>(Config.ReservationsPage);
+            containerRegistry.Register<EmptyReservationsView>();
             containerRegistry.Register<IApiService,ApiService>();
             containerRegistry.Register<IAuthService, AuthService>();
         }

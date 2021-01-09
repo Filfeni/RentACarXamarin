@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RentACar.Views.CustomRenderers"
              x:Class="RentACar.Views.MyCarsPage"
              Title="Add Car"
              x:Name="addCarPage">
@@ -13,8 +14,10 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text="Remove" Command="{Binding BindingContext.DeleteCarCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" IsDestructive="True"></MenuItem>
                             <MenuItem Text="View Details" Command="{Binding BindingContext.CarDetailsCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}"></MenuItem>
+                            <MenuItem Text="Delete Car" Command="{Binding BindingContext.DeleteCarCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" IsDestructive="True"></MenuItem>
+                            <MenuItem Text="Create Post" Command="{Binding BindingContext.CarDetailsCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}"></MenuItem>
+                            <MenuItem Text="Delete Post" Command="{Binding BindingContext.CarDetailsCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}"></MenuItem>
                         </ViewCell.ContextActions>
                         <StackLayout>
                             <Label Text="{Binding Model}"></Label>

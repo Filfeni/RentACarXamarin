@@ -23,6 +23,8 @@ namespace RentACar.Services
         Task<HttpResponseMessage> DeleteMyCar(int id);
 
         // RESERVATIONS
+        Task<HttpResponseMessage> GetMyReservations();
+
         // CONSTANTS
         Task<HttpResponseMessage> GetBrands();
         Task<HttpResponseMessage> GetFuelTypes();

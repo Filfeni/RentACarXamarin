@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RentACar.Models
 {
@@ -36,5 +33,10 @@ namespace RentACar.Models
 
         [JsonProperty("Transmision")]
         public bool Transmission { get; set; }
+
+        [JsonProperty("TienePost")]
+        public bool IsPosted { get; set; }
+
+        public bool CanCreatePost { get { return !IsPosted; } }
     }
 }

@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Image Aspect="AspectFill" Source="explorebackground.jpg"></Image>
-            <Entry Placeholder="¿What car are you looking for?"></Entry>
+            <SearchBar Placeholder="¿What car are you looking for?"/>
             <Label Text="Go on a trip"></Label>
             <Button Text="Search"></Button>
         </StackLayout>

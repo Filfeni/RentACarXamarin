@@ -5,9 +5,12 @@
              Title="Register">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Register Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Entry Placeholder="Username" Text="{Binding User.Username}"/>
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding User.Password}"/>
+            <Entry Placeholder="First Name" Text="{Binding User.FirstName}"/>
+            <Entry Placeholder="Last Name" Text="{Binding User.LastName}"/>
+            <Entry Placeholder="PhoneNumber" Text="{Binding User.PhoneNumber}"/>
+            <Button Text="Register" Command="{Binding SignUpCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

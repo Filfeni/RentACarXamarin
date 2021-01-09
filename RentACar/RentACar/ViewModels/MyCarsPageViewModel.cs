@@ -12,7 +12,7 @@ using System.Text;
 
 namespace RentACar.ViewModels
 {
-    public class MyCarsPageViewModel : BaseViewModel, INavigatedAware, IInitialize
+    public class MyCarsPageViewModel : BaseViewModel, IInitialize
     {
         public INavigationService NavigationService;
         public IApiService ApiService;
@@ -24,7 +24,6 @@ namespace RentACar.ViewModels
         public DelegateCommand<Car> DeleteCarCommand { get; private set; }
         public DelegateCommand AddCarCommand { get; private set; }
         public DelegateCommand<Car> CarDetailsCommand { get; private set; }
-        public HttpResponseMessage CarsRequest { get; set; }
         public MyCarsPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
         {
             NavigationService = navigationService;
@@ -34,12 +33,11 @@ namespace RentACar.ViewModels
             CarList = new ObservableCollection<Car>();
             DeleteCarCommand = new DelegateCommand<Car>(DeleteCar);
             CarDetailsCommand = new DelegateCommand<Car>(CarDetails);
-            AddCarCommand = new DelegateCommand(AddCar);
         }
 
         public async void AddCar()
         {
-            await NavigationService.NavigateAsync(Config.NewCarNavigation);
+            await NavigationService.NavigateAsync(Config.NewCarPage);
         }
 
         public async void DeleteCar(Car car)
@@ -50,10 +48,10 @@ namespace RentACar.ViewModels
                 return;
             }
             await AuthorizationService.Authorize();
-            CarsRequest = await ApiService.DeleteMyCar(car.CarId);
-            if (CarsRequest.IsSuccessStatusCode)
+            HttpResponseMessage carsRequest = await ApiService.DeleteMyCar(car.CarId);
+            if (carsRequest.IsSuccessStatusCode)
             {
-                string responseContent = await CarsRequest.Content.ReadAsStringAsync();
+                string responseContent = await carsRequest.Content.ReadAsStringAsync();
                 Response = JsonConvert.DeserializeObject<Response>(responseContent);
                 await DialogService.DisplayAlertAsync($"{Response.Status}", $"{Response.Message}", "OK");
                 Refresh();
@@ -65,17 +63,8 @@ namespace RentACar.ViewModels
         }
         public async void CarDetails(Car car)
         {
-            string transmission = car.Transmission != true ? "Automatic" : "Manual";
+            string transmission = car.Transmission != true ? "Manual" : "Automatic";
             await DialogService.DisplayAlertAsync("Car Details", $"Model : {car.Model}\nModel : {car.Year}\nLicense plate : {car.LicensePlate}\nColor : {car.Color}\nTransmission type : {transmission}", "OK");
-        }
-
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-        }
-
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-
         }
 
         public async void Initialize(INavigationParameters parameters)
@@ -85,10 +74,10 @@ namespace RentACar.ViewModels
             {
                 return;
             }
-            CarsRequest = await ApiService.GetMyCars();
-            if (CarsRequest.IsSuccessStatusCode)
+            HttpResponseMessage carsRequest = await ApiService.GetMyCars();
+            if (carsRequest.IsSuccessStatusCode)
             {
-                string responseContent = await CarsRequest.Content.ReadAsStringAsync();
+                string responseContent = await carsRequest.Content.ReadAsStringAsync();
                 CarList = JsonConvert.DeserializeObject<ObservableCollection<Car>>(responseContent);
             }
             else
@@ -103,10 +92,10 @@ namespace RentACar.ViewModels
             {
                 return;
             }
-            CarsRequest = await ApiService.GetMyCars();
-            if (CarsRequest.IsSuccessStatusCode)
+            HttpResponseMessage carsRequest = await ApiService.GetMyCars();
+            if (carsRequest.IsSuccessStatusCode)
             {
-                string responseContent = await CarsRequest.Content.ReadAsStringAsync();
+                string responseContent = await carsRequest.Content.ReadAsStringAsync();
                 CarList = JsonConvert.DeserializeObject<ObservableCollection<Car>>(responseContent);
             }
             else

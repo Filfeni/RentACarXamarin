@@ -27,7 +27,6 @@ namespace RentACar.ViewModels
         public ObservableCollection<Category> CategoryList { get; set; }
         public ObservableCollection<FuelType> FuelTypeList { get; set; }
         public UserIdResponse CurrentUserId { get; set; }
-        public HttpResponseMessage RegisterCarResponse { get; set; }
         public DelegateCommand AddCarCommand { get; set; }
         public Response SubmitResponse { get; private set; }
 
@@ -76,17 +75,17 @@ namespace RentACar.ViewModels
             NewCar.BrandId = SelectedBrand.Id;
             NewCar.CategoryId = SelectedCategory.Id;
             NewCar.FuelTypeId = SelectedFuelType.Id;
-            RegisterCarResponse = await ApiService.PostCar(NewCar);
-            if (RegisterCarResponse.IsSuccessStatusCode)
+            HttpResponseMessage registerCarResponse = await ApiService.PostCar(NewCar);
+            if (registerCarResponse.IsSuccessStatusCode)
             {
-                string responseContent = await RegisterCarResponse.Content.ReadAsStringAsync();
+                string responseContent = await registerCarResponse.Content.ReadAsStringAsync();
                 SubmitResponse = JsonConvert.DeserializeObject<Response>(responseContent);
                 await DialogService.DisplayAlertAsync($"{SubmitResponse.Status}", $"{SubmitResponse.Message}", "OK");
                 await NavigationService.NavigateAsync(Config.HomeTabbedPageNavigation);
             }
             else
             {
-                string responseContent = await RegisterCarResponse.Content.ReadAsStringAsync();
+                string responseContent = await registerCarResponse.Content.ReadAsStringAsync();
                 SubmitResponse = JsonConvert.DeserializeObject<Response>(responseContent);
                 await DialogService.DisplayAlertAsync($"{SubmitResponse.Status}", $"{SubmitResponse.Message}", "OK");
             }
