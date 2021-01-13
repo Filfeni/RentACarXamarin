@@ -24,6 +24,8 @@ namespace RentACar.ViewModels
         public DelegateCommand<Car> DeleteCarCommand { get; private set; }
         public DelegateCommand AddCarCommand { get; private set; }
         public DelegateCommand<Car> CarDetailsCommand { get; private set; }
+        public DelegateCommand<Car> CreatePostCommand { get; private set; }
+        public DelegateCommand<Car> DeletePostCommand { get; private set; }
         public MyCarsPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
         {
             NavigationService = navigationService;
@@ -33,6 +35,8 @@ namespace RentACar.ViewModels
             CarList = new ObservableCollection<Car>();
             DeleteCarCommand = new DelegateCommand<Car>(DeleteCar);
             CarDetailsCommand = new DelegateCommand<Car>(CarDetails);
+            CreatePostCommand = new DelegateCommand<Car>(CreatePost);
+            DeletePostCommand = new DelegateCommand<Car>(DeletePost);
         }
 
         public async void AddCar()
@@ -59,6 +63,35 @@ namespace RentACar.ViewModels
             else
             {
                 await DialogService.DisplayAlertAsync("Error", "Could not delete car", "OK");
+            }
+        }
+
+        public async void CreatePost(Car car)
+        {
+            NavigationParameters parameters = new NavigationParameters();
+            parameters.Add(nameof(car.CarId),car.CarId);
+            await NavigationService.NavigateAsync(Config.NewPostPage, parameters);
+        }
+
+        public async void DeletePost(Car car)
+        {
+            bool confirmed = await DialogService.DisplayAlertAsync("Alert", "Are you sure you want to delete this car's post?", "Yes", "No");
+            if (!confirmed)
+            {
+                return;
+            }
+            await AuthorizationService.Authorize();
+            HttpResponseMessage postResponse = await ApiService.DeletePost(car.CarId);
+            if (postResponse.IsSuccessStatusCode)
+            {
+                string responseContent = await postResponse.Content.ReadAsStringAsync();
+                Response = JsonConvert.DeserializeObject<Response>(responseContent);
+                await DialogService.DisplayAlertAsync($"{Response.Status}", $"{Response.Message}", "OK");
+                Refresh();
+            }
+            else
+            {
+                await DialogService.DisplayAlertAsync("Error", "Could not delete Post", "OK");
             }
         }
         public async void CarDetails(Car car)

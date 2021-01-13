@@ -20,6 +20,9 @@ namespace RentACar.Models
         public decimal Price { get; set; }
         
         [JsonProperty("Direccion")]
-        public string Direccion { get; set; }
+        public string Address { get; set; }
+
+        [JsonProperty("idcarroNavigation")]
+        public virtual Car CarNavigation { get; set; }
     }
 }

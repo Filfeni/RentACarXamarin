@@ -16,8 +16,8 @@
                         <ViewCell.ContextActions>
                             <MenuItem Text="View Details" Command="{Binding BindingContext.CarDetailsCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}"></MenuItem>
                             <MenuItem Text="Delete Car" Command="{Binding BindingContext.DeleteCarCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" IsDestructive="True"></MenuItem>
-                            <MenuItem Text="Create Post" Command="{Binding BindingContext.CarDetailsCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}"></MenuItem>
-                            <MenuItem Text="Delete Post" Command="{Binding BindingContext.CarDetailsCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}"></MenuItem>
+                            <MenuItem Text="Create Post" Command="{Binding BindingContext.CreatePostCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}"></MenuItem>
+                            <MenuItem Text="Delete Post" Command="{Binding BindingContext.DeletePostCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}"></MenuItem>
                         </ViewCell.ContextActions>
                         <StackLayout>
                             <Label Text="{Binding Model}"></Label>

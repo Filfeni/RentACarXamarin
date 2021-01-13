@@ -28,7 +28,6 @@ namespace RentACar.ViewModels
         public ObservableCollection<FuelType> FuelTypeList { get; set; }
         public UserIdResponse CurrentUserId { get; set; }
         public DelegateCommand AddCarCommand { get; set; }
-        public Response SubmitResponse { get; private set; }
 
         public NewCarPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
         {
@@ -42,7 +41,11 @@ namespace RentACar.ViewModels
 
         public async void Initialize(INavigationParameters parameters)
         {
-            await AuthorizationService.Authorize();
+            bool confirmed = await DialogService.DisplayAlertAsync("Alert", "Are you sure you want to delete this car?", "Yes", "No");
+            if (!confirmed)
+            {
+                return;
+            }
             var useridTask = ApiService.GetUserId();
             var brandsTask = ApiService.GetBrands();
             var categoriesTask = ApiService.GetCategories();
@@ -71,6 +74,11 @@ namespace RentACar.ViewModels
 
         public async void AddCar()
         {
+            bool isAuthorized = await AuthorizationService.Authorize();
+            if (!isAuthorized)
+            {
+                return;
+            }
             NewCar.OwnerId = CurrentUserId.UserId;
             NewCar.BrandId = SelectedBrand.Id;
             NewCar.CategoryId = SelectedCategory.Id;
@@ -79,15 +87,15 @@ namespace RentACar.ViewModels
             if (registerCarResponse.IsSuccessStatusCode)
             {
                 string responseContent = await registerCarResponse.Content.ReadAsStringAsync();
-                SubmitResponse = JsonConvert.DeserializeObject<Response>(responseContent);
-                await DialogService.DisplayAlertAsync($"{SubmitResponse.Status}", $"{SubmitResponse.Message}", "OK");
+                Response submitResponse = JsonConvert.DeserializeObject<Response>(responseContent);
+                await DialogService.DisplayAlertAsync($"{submitResponse.Status}", $"{submitResponse.Message}", "OK");
                 await NavigationService.NavigateAsync(Config.HomeTabbedPageNavigation);
             }
             else
             {
                 string responseContent = await registerCarResponse.Content.ReadAsStringAsync();
-                SubmitResponse = JsonConvert.DeserializeObject<Response>(responseContent);
-                await DialogService.DisplayAlertAsync($"{SubmitResponse.Status}", $"{SubmitResponse.Message}", "OK");
+                Response submitResponse = JsonConvert.DeserializeObject<Response>(responseContent);
+                await DialogService.DisplayAlertAsync($"{submitResponse.Status}", $"{submitResponse.Message}", "OK");
             }
         }
     }

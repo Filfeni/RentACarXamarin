@@ -65,8 +65,37 @@ namespace RentACar.Services
             return response;
         }
 
+        public async Task<HttpResponseMessage> CreatePost(Post post)
+        {
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("Token");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(post), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(string.Join("", new string[] { Config.BaseApiUrl, Config.MyCarsRoute, "/", post.CarId.ToString(), "/post" }), content);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> DeletePost(int id)
+        {
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("Token");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            var response = await client.DeleteAsync(string.Join("", new string[] { Config.BaseApiUrl, Config.MyCarsRoute, "/", id.ToString(), "/post" }));
+            return response;
+        }
 
         // CATALOG
+        // api/catalog/search?search=
+        public async Task<HttpResponseMessage> SearchCatalog(string query)
+        {
+            query = query.Replace(" ", "%20");
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("Token");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            string route = string.Join("", new string[] { Config.BaseApiUrl, Config.CatalogRoute, "/search?search=", query });
+            var response = await client.GetAsync(route);
+            return response;
+        }
 
         // RESERVATIONS
         public async Task<HttpResponseMessage> GetMyReservations()
@@ -75,6 +104,24 @@ namespace RentACar.Services
             string token = await SecureStorage.GetAsync("Token");
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
             var response = await client.GetAsync(string.Join("", new string[] { Config.BaseApiUrl, Config.ReservationsRoute }));
+            return response;
+        }
+        public async Task<HttpResponseMessage> GetReservationDates(int carid)
+        {
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("Token");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            var response = await client.GetAsync(string.Join("", new string[] { Config.BaseApiUrl, Config.ReservationsRoute,"/", carid.ToString(), "/reservation-dates" }));
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> PostReservation(Reservation reservation)
+        {
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("Token");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            StringContent content = new StringContent(JsonConvert.SerializeObject(reservation), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(string.Join("", new string[] { Config.BaseApiUrl, Config.ReservationsRoute}), content);
             return response;
         }
         // CONSTANTS
@@ -113,6 +160,13 @@ namespace RentACar.Services
             return response;
         }
 
-        
+        public async Task<HttpResponseMessage> GetReservationTypes()
+        {
+            HttpClient client = new HttpClient();
+            string token = await SecureStorage.GetAsync("Token");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            var response = await client.GetAsync(string.Join("", new string[] { Config.BaseApiUrl, Config.ReservationTypesRoute }));
+            return response;
+        }
     }
 }

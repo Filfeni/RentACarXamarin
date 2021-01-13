@@ -126,6 +126,9 @@
     <PackageReference Include="Prism.Unity.Forms">
       <Version>7.2.0.1422</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
+      <Version>18.4.0.33</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
   </ItemGroup>

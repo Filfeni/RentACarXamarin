@@ -41,12 +41,15 @@ namespace RentACar
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<HomeTabbedPage, HomeTabbedPageViewModel>(Config.HomePage);
             containerRegistry.RegisterForNavigation<MyCarsPage, MyCarsPageViewModel>(Config.MyCarsPage);
+            containerRegistry.RegisterForNavigation<CatalogPage, CatalogPageViewModel>(Config.CatalogPage);
             containerRegistry.RegisterForNavigation<NewCarPage, NewCarPageViewModel>(Config.NewCarPage);
+            containerRegistry.RegisterForNavigation<NewPostPage, NewPostPageViewModel>(Config.NewPostPage);
             containerRegistry.RegisterForNavigation<ExplorePage, ExplorePageViewModel>(Config.ExplorePage);
             containerRegistry.RegisterForNavigation<LogInPage, LogInPageViewModel>(Config.LogInPage);
             containerRegistry.RegisterForNavigation<MorePage, MorePageViewModel>(Config.MorePage);
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>(Config.RegisterPage);
             containerRegistry.RegisterForNavigation<ReservationsPage, ReservationsPageViewModel>(Config.ReservationsPage);
+            containerRegistry.RegisterForNavigation<RentPage, RentPageViewModel>(Config.RentPage);
             containerRegistry.Register<EmptyReservationsView>();
             containerRegistry.Register<IApiService,ApiService>();
             containerRegistry.Register<IAuthService, AuthService>();

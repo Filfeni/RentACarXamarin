@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RentACar.Views.NewPostPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Description" Text="{Binding NewPost.Description}"/>
+            <Entry Placeholder="Price"  Text="{Binding NewPost.Price}"/>
+            <Entry Placeholder="Address" Text="{Binding NewPost.Address}"/>
+            <Button Text="Create Post" Command="{Binding CreatePostCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

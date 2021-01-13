@@ -2,24 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:RentACar.Views"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              x:Class="RentACar.Views.RentPage"
              Title="Reservations">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Rented Car Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <CollectionView>
-                <CollectionView.EmptyView>
-                    <views:EmptyReservationsView></views:EmptyReservationsView>
-                </CollectionView.EmptyView>
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Span="2" Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate></DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Post.CarNavigation.Model}"></Label>
+                <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Post.Description}"></Label>
+                <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Post.Address}"></Label>
+                <Label Grid.Row="3" Grid.Column="0" Text="{Binding Post.Price}"></Label>
+                <Label Grid.Row="3" Grid.Column="1" Text="{Binding Post.CarNavigation.Year}"></Label>
+                <syncfusion:SfCalendar Grid.Row="4" Grid.ColumnSpan="2" SelectionMode="RangeSelection" SelectedRange="{Binding SelectedRange, Mode=TwoWay}" MinDate="{Binding MinDate}" MaxDate="{Binding MaxDate}" BlackoutDates="{Binding BlackoutDates}" BlackoutDatesViewMode="Stripes"></syncfusion:SfCalendar>
+            </Grid>
+            <Picker Title="Reserve Range" ItemsSource="{Binding ReservationTypeList}" ItemDisplayBinding="{Binding Range}" SelectedItem="{Binding SelectedReservationType}"/>
+            <Button Text="Rent this car!" Command="{Binding RentCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
