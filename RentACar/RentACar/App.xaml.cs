@@ -4,9 +4,7 @@ using Prism.Unity;
 using RentACar.Services;
 using RentACar.ViewModels;
 using RentACar.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace RentACar
 {

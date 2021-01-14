@@ -3,4 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentACar.App"
              xmlns:prism="http://prismlibrary.com">
+    <!--Primary #ff5722
+    Primary Light #ff8a50
+    Primary Dark #c41c00
+    Secondary #ff9800
+    Secondary Light #ffc947
+    Secondary Dark #c66900-->
+    <prism:PrismApplication.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Example" TargetType="Frame">
+                <Setter Property="BorderColor" Value="#000000"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </prism:PrismApplication.Resources>
 </prism:PrismApplication>

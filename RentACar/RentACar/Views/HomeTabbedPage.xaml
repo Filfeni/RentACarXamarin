@@ -4,7 +4,8 @@
             x:Class="RentACar.Views.HomeTabbedPage"
             xmlns:local="clr-namespace:RentACar.Views"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-            android:TabbedPage.ToolbarPlacement="Bottom">
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.IsSwipePagingEnabled="False">
   <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
         <local:ExplorePage/>

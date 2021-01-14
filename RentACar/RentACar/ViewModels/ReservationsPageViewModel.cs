@@ -3,12 +3,9 @@ using Prism.Navigation;
 using Prism.Services;
 using RentACar.Models;
 using RentACar.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 
 namespace RentACar.ViewModels
 {

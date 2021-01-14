@@ -5,7 +5,6 @@ using Prism.Services;
 using RentACar.Models;
 using RentACar.Services;
 using System.Net.Http;
-using Xamarin.Essentials;
 
 namespace RentACar.ViewModels
 {

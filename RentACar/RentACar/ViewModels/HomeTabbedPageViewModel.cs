@@ -1,9 +1,5 @@
 ﻿using Prism.Navigation;
 using RentACar.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Essentials;
 
 namespace RentACar.ViewModels
 {

@@ -1,8 +1,5 @@
 ﻿using Prism.Commands;
 using RentACar.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RentACar.ViewModels
 {
