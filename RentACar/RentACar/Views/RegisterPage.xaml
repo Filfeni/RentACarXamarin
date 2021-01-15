@@ -2,15 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentACar.Views.RegisterPage"
-             Title="Register">
+             Title="Register"
+             BackgroundColor="LightSalmon">
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Placeholder="Username" Text="{Binding User.Username}"/>
-            <Entry Placeholder="Password" IsPassword="True" Text="{Binding User.Password}"/>
-            <Entry Placeholder="First Name" Text="{Binding User.FirstName}"/>
-            <Entry Placeholder="Last Name" Text="{Binding User.LastName}"/>
-            <Entry Placeholder="PhoneNumber" Text="{Binding User.PhoneNumber}"/>
-            <Button Text="Register" Command="{Binding SignUpCommand}" />
+        <StackLayout Margin="50,0" VerticalOptions="Center">
+            <Entry PlaceholderColor="White" HorizontalTextAlignment="Center" TextColor="White" Placeholder="Username" Text="{Binding User.Username}"/>
+            <Entry PlaceholderColor="White" HorizontalTextAlignment="Center" TextColor="White" Placeholder="Password" IsPassword="True" Text="{Binding User.Password}"/>
+            <Entry PlaceholderColor="White" HorizontalTextAlignment="Center" TextColor="White" Placeholder="Confirm Password" IsPassword="True"/>
+            <Entry PlaceholderColor="White" HorizontalTextAlignment="Center" TextColor="White" Placeholder="First Name" Text="{Binding User.FirstName}"/>
+            <Entry PlaceholderColor="White" HorizontalTextAlignment="Center" TextColor="White" Placeholder="Last Name" Text="{Binding User.LastName}"/>
+            <Entry PlaceholderColor="White" HorizontalTextAlignment="Center" TextColor="White" Placeholder="Phone Number" Keyboard="Numeric" Text="{Binding User.PhoneNumber}"/>
+            <Button BackgroundColor="White" CornerRadius="30" TextColor="LightSalmon" Text="Register" Command="{Binding SignUpCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

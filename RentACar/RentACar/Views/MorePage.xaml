@@ -5,7 +5,8 @@
              Title="More">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Sign Out"
+            <Button
+                TextColor="LightSalmon" BackgroundColor="White" CornerRadius="30" Text="Sign Out"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand" 
                     Command="{Binding SignOutCommand}"/>

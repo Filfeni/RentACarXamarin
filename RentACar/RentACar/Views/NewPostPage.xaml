@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentACar.Views.NewPostPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="50,0" VerticalOptions="Center">
             <Entry Placeholder="Description" Text="{Binding NewPost.Description}"/>
-            <Entry Placeholder="Price"  Text="{Binding NewPost.Price}"/>
+            <Entry Placeholder="Price" Keyboard="Numeric" MaxLength="11"  Text="{Binding NewPost.Price}"/>
             <Entry Placeholder="Address" Text="{Binding NewPost.Address}"/>
             <Button Text="Create Post" Command="{Binding CreatePostCommand}"></Button>
         </StackLayout>

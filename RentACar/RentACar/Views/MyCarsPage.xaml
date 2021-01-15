@@ -3,40 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentACar.Views.MyCarsPage"
              Title="My Cars"
-             x:Name="addCarPage" BackgroundColor="LightGray">
+             x:Name="addCarPage" 
+             BackgroundColor="LightSalmon">
     <ContentPage.Content>
         <StackLayout>
-        <CollectionView ItemsSource="{Binding CarList}" SelectedItem="{Binding SelectedCar}" SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Spacing="10">
-                        <SwipeView Margin="10,5" BackgroundColor="LightGray">
-                            <SwipeView.LeftItems>
-                                <SwipeItems>
-                                    <SwipeItem Text="View Details" Command="{Binding BindingContext.CarDetailsCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" BackgroundColor="DeepSkyBlue"></SwipeItem>
-                                    <SwipeItem Text="Delete Car" Command="{Binding BindingContext.DeleteCarCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" BackgroundColor="IndianRed" IsDestructive="True"></SwipeItem>
-                                </SwipeItems>
-                            </SwipeView.LeftItems>
-                            <SwipeView.RightItems>
-                                <SwipeItems>
-                                    <SwipeItem Text="Create Post" Command="{Binding BindingContext.CreatePostCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" IsVisible="{Binding CanCreatePost}" BackgroundColor="LightSeaGreen"></SwipeItem>
-                                    <SwipeItem Text="Delete Post" Command="{Binding BindingContext.DeletePostCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" IsVisible="{Binding IsPosted}" BackgroundColor="IndianRed"></SwipeItem>
-                                </SwipeItems>
-                            </SwipeView.RightItems>
-                            <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#FFFFFF" >
-                                <StackLayout BackgroundColor="#ffffff">
-                                    <Label Text="{Binding Model, StringFormat='Model: {0}'}"></Label>
-                                    <Label Text="{Binding Year, StringFormat='Year: {0}'}"></Label>
-                                    <Label Text="{Binding Color, StringFormat='Color: {0}'}"></Label>
-                                    <Label Text="{Binding LicensePlate, StringFormat='License Plate: {0}'}"></Label>
-                                </StackLayout>
-                            </Frame>
-                        </SwipeView>
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-            <Button Text="+" Margin="15" FontSize="20" TextColor="#ffffff" WidthRequest="60" HeightRequest="60" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand" CornerRadius="45" BackgroundColor="#003049" Command="{Binding AddCarCommand}"></Button>
+            <Label Text="Cars you have registered." FontAttributes="Italic" Margin="10,20" FontSize="Title" TextColor="#ffffff"/>
+            <CollectionView ItemsSource="{Binding CarList}" SelectedItem="{Binding SelectedCar}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="10">
+                            <SwipeView Margin="10,5" BackgroundColor="LightSalmon">
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="View Details" Command="{Binding BindingContext.CarDetailsCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" BackgroundColor="#003049"></SwipeItem>
+                                        <SwipeItem Text="Delete Car" Command="{Binding BindingContext.DeleteCarCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" BackgroundColor="IndianRed" IsDestructive="True"></SwipeItem>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Create Post" Command="{Binding BindingContext.CreatePostCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" IsVisible="{Binding CanCreatePost}" BackgroundColor="LightSeaGreen"></SwipeItem>
+                                        <SwipeItem Text="Delete Post" Command="{Binding BindingContext.DeletePostCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" IsVisible="{Binding IsPosted}" BackgroundColor="IndianRed"></SwipeItem>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#FFFFFF" >
+                                    <StackLayout BackgroundColor="#ffffff">
+                                        <Label Text="{Binding Model, StringFormat='Model: {0}'}"></Label>
+                                        <Label Text="{Binding Year, StringFormat='Year: {0}'}"></Label>
+                                        <Label Text="{Binding Color, StringFormat='Color: {0}'}"></Label>
+                                        <Label Text="{Binding LicensePlate, StringFormat='License Plate: {0}'}"></Label>
+                                    </StackLayout>
+                                </Frame>
+                            </SwipeView>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="+" Margin="15" FontSize="20" BackgroundColor="White" TextColor="LightSalmon" WidthRequest="60" HeightRequest="60" VerticalOptions="End" HorizontalOptions="End" CornerRadius="45" Command="{Binding AddCarCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

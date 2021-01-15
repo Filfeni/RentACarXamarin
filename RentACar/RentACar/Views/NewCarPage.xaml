@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RentACar.Views.NewCarPage">
+             x:Class="RentACar.Views.NewCarPage"
+             BackgroundColor="LightSalmon">
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Placeholder="Model" Text="{Binding NewCar.Model}"/>
-            <Entry Placeholder="Year"  Text="{Binding NewCar.Year}"/>
-            <Entry Placeholder="Color" Text="{Binding NewCar.Color}"/>
-            <Entry Placeholder="License Plate" Text="{Binding NewCar.LicensePlate}"/>
-            <Picker Title="Brand" ItemsSource="{Binding BrandList}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedBrand}"/>
-            <Picker Title="Category" ItemsSource="{Binding CategoryList}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedCategory}"/>
-            <Picker Title="Fuel Types" ItemsSource="{Binding FuelTypeList}" ItemDisplayBinding="{Binding Type}" SelectedItem="{Binding SelectedFuelType}"/>
-            <Switch IsToggled="{Binding NewCar.Transmission}"/>
-            <Button Text="Register Car" Command="{Binding AddCarCommand}"></Button>
+        <StackLayout Margin="50,0" VerticalOptions="Center">
+            <Entry PlaceholderColor="White" TextColor="White" HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing" Placeholder="Model" Text="{Binding NewCar.Model}"/>
+            <Entry PlaceholderColor="White" TextColor="White" HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing" Placeholder="Year"  Text="{Binding NewCar.Year}"/>
+            <Entry PlaceholderColor="White" TextColor="White" HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing" Placeholder="Color" Text="{Binding NewCar.Color}"/>
+            <Entry PlaceholderColor="White" TextColor="White" HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing" Placeholder="License Plate" Text="{Binding NewCar.LicensePlate}"/>
+            <Picker TitleColor="White" TextColor="White" Title="Brand" ItemsSource="{Binding BrandList}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedBrand}"/>
+            <Picker TitleColor="White" TextColor="White" Title="Category" ItemsSource="{Binding CategoryList}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedCategory}"/>
+            <Picker TitleColor="White" TextColor="White" Title="Fuel Types" ItemsSource="{Binding FuelTypeList}" ItemDisplayBinding="{Binding Type}" SelectedItem="{Binding SelectedFuelType}"/>
+            <Switch OnColor="White" IsToggled="{Binding NewCar.Transmission}"/>
+            <Button TextColor="LightSalmon" BackgroundColor="White" CornerRadius="30"  Text="Register Car" Command="{Binding AddCarCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

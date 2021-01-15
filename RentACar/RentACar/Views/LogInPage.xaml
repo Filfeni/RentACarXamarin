@@ -2,14 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentACar.Views.LogInPage"
-             Title="Login">
+             Title="Login" BackgroundColor="LightSalmon">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Rent Car" />
-            <Entry Placeholder="Username" Text="{Binding User.Username}"></Entry>
-            <Entry Placeholder="Password" IsPassword="True" Text="{Binding User.Password}"></Entry>
-            <Button Text="Log In" Command="{Binding LogInCommand}"></Button>
-            <Button Text="Sign Up" Command="{Binding SignUpCommand}"></Button>
-        </StackLayout>
+        <Grid RowSpacing="10" Margin="50,0" HorizontalOptions="Fill" VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Margin="0,0,0,30" Grid.Row="0" Grid.ColumnSpan="2">
+                <Image Source="car.png" Margin="0,35,0,0" HeightRequest="200" Scale="1" ></Image>
+                <Label HorizontalOptions="Center" FontAttributes="Italic" Text="Carbnb." FontSize="60" TextColor="#ffffff"/>
+            </StackLayout>
+            <Entry Grid.Row="1" Grid.ColumnSpan="2" Placeholder="Username" PlaceholderColor="White" TextColor="White" HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing" Text="{Binding User.Username}"></Entry>
+            <Entry Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Password" PlaceholderColor="White" TextColor="White" HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing" IsPassword="True" Text="{Binding User.Password}"></Entry>
+            <Button Grid.Row="3" Grid.Column="0" TextColor="LightSalmon" BackgroundColor="White" CornerRadius="30" Text="Log In" Command="{Binding LogInCommand}"></Button>
+            <Button Grid.Row="3" Grid.Column="1" TextColor="LightSalmon" BackgroundColor="White" CornerRadius="30" Text="Sign Up" Command="{Binding SignUpCommand}"></Button>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
