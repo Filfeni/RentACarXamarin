@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RentACar.Views.EmptyReservationsView">
+             x:Class="RentACar.Views.EmptyReservationsView"
+             Style="{StaticResource ContentPageColor}">
   <ContentView.Content>
       <StackLayout>
             <Label  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="You have not reserved a car yet!" />

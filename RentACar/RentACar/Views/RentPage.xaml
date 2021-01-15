@@ -5,12 +5,12 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
              x:Class="RentACar.Views.RentPage"
              Title="Reservations"
-             BackgroundColor="LightSalmon">
+             Style="{StaticResource ContentPageColor}">
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Spacing="10" Margin="0,10" VerticalOptions="Center">
-                <Label Margin="10,0" Text="{Binding Post.Description}" FontSize="Title" TextColor="#ffffff" FontAttributes="Bold "/>
-                <Frame Margin="40,10,40,50" CornerRadius="20">
+            <Label Style="{StaticResource RentFirstLabelStyle}" Text="{Binding Post.Description}"/>
+            <Frame Margin="40,10,40,50" CornerRadius="20">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".1*" />
@@ -26,10 +26,10 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.ColumnSpan="4" Text="Car details" FontAttributes="Bold"></Label>
-                        <Label Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding Post.CarNavigation.Model, StringFormat='Model: {0}'}"></Label>
+                    <Label Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding Post.CarNavigation.Model, StringFormat='Model: {0}'}"></Label>
                     <Label Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding Post.Address, StringFormat='Address: {0}'}"></Label>
                     <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Post.Price, StringFormat='RD$ {0}'}"></Label>
-                        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Post.CarNavigation.Year , StringFormat='Year: {0}'}"></Label>
+                    <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Post.CarNavigation.Year , StringFormat='Year: {0}'}"></Label>
                 </Grid>
             </Frame>
             
@@ -37,8 +37,8 @@
             <Frame Margin="40,0" CornerRadius="20">
                 <syncfusion:SfCalendar HeightRequest="300" WidthRequest="300"  Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" SelectionMode="RangeSelection" SelectedRange="{Binding SelectedRange, Mode=TwoWay}" MinDate="{Binding MinDate}" MaxDate="{Binding MaxDate}" BlackoutDates="{Binding BlackoutDates}" BlackoutDatesViewMode="Strikethrough"></syncfusion:SfCalendar>
             </Frame>
-                <Picker Margin="40,0" TitleColor="White" TextColor="White" Title="Reserve Range" VerticalOptions="End" ItemsSource="{Binding ReservationTypeList}" ItemDisplayBinding="{Binding Range}" SelectedItem="{Binding SelectedReservationType}"/>
-                <Button Margin="40,0,40,40" BackgroundColor="White" TextColor="LightSalmon" CornerRadius="30" Text="Rent this car!" VerticalOptions="End" Command="{Binding RentCommand}"></Button>
+                <Picker Style="{StaticResource DefaultPickerStyle}" Margin="40,0" Title="Reserve Range" VerticalOptions="End" ItemsSource="{Binding ReservationTypeList}" ItemDisplayBinding="{Binding Range}" SelectedItem="{Binding SelectedReservationType}"/>
+                <Button Style="{StaticResource DefaultButtonStyle}" Margin="40,0,40,40" Text="Rent this car!" VerticalOptions="End" Command="{Binding RentCommand}"></Button>
         </StackLayout>
         </ScrollView>
     </ContentPage.Content>

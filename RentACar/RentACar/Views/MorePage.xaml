@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentACar.Views.MorePage"
-             Title="More">
+             Title="More"
+             Style="{StaticResource ContentPageColor}">
     <ContentPage.Content>
         <StackLayout>
             <Button
-                TextColor="LightSalmon" BackgroundColor="White" CornerRadius="30" Text="Sign Out"
+                Style="{StaticResource DefaultButtonStyle}" Text="Sign Out"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand" 
                     Command="{Binding SignOutCommand}"/>

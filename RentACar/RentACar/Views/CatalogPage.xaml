@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentACar.Views.CatalogPage"
-             x:Name="catalogPage">
+             x:Name="catalogPage"
+             Style="{StaticResource ContentPageColor}">
     <ContentPage.Content>
         <CollectionView Style="{StaticResource CatalogCollectionViewStyle}" ItemsSource="{Binding PostList}" SelectedItem="{Binding SelectedPost}">
             <CollectionView.EmptyView>
@@ -10,7 +11,7 @@
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame CornerRadius="10" HasShadow="True" HorizontalOptions="Fill" BackgroundColor="#FFFFFF" >
+                    <Frame Style="{StaticResource CatalogFrameStyle}" >
                         <Grid>
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding BindingContext.RentCarCommand, Source={x:Reference catalogPage}}" CommandParameter="{Binding}"></TapGestureRecognizer>

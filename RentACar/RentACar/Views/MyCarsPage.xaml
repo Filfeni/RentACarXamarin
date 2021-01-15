@@ -4,15 +4,15 @@
              x:Class="RentACar.Views.MyCarsPage"
              Title="My Cars"
              x:Name="addCarPage" 
-             BackgroundColor="LightSalmon">
+             Style="{StaticResource ContentPageColor}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Cars you have registered." FontAttributes="Italic" Margin="10,20" FontSize="Title" TextColor="#ffffff"/>
+            <Label Style="{StaticResource MyCarsLabelStyle}" Text="Cars you have registered."/>
             <CollectionView ItemsSource="{Binding CarList}" SelectedItem="{Binding SelectedCar}" SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Spacing="10">
-                            <SwipeView Margin="10,5" BackgroundColor="LightSalmon">
+                            <SwipeView Style="{StaticResource MyCarsSwipeViewStyle}">
                                 <SwipeView.LeftItems>
                                     <SwipeItems>
                                         <SwipeItem Text="View Details" Command="{Binding BindingContext.CarDetailsCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" BackgroundColor="#003049"></SwipeItem>
@@ -25,7 +25,7 @@
                                         <SwipeItem Text="Delete Post" Command="{Binding BindingContext.DeletePostCommand, Source={x:Reference addCarPage}}" CommandParameter="{Binding}" IsVisible="{Binding IsPosted}" BackgroundColor="IndianRed"></SwipeItem>
                                     </SwipeItems>
                                 </SwipeView.RightItems>
-                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#FFFFFF" >
+                                <Frame Style="{StaticResource MyCarsFrameStyle}" >
                                     <StackLayout BackgroundColor="#ffffff">
                                         <Label Text="{Binding Model, StringFormat='Model: {0}'}"></Label>
                                         <Label Text="{Binding Year, StringFormat='Year: {0}'}"></Label>

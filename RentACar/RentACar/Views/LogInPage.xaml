@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentACar.Views.LogInPage"
-             Title="Login" BackgroundColor="LightSalmon">
+             Title="Login" 
+             Style="{StaticResource ContentPageColor}">
     <ContentPage.Content>
-        <Grid RowSpacing="10" Margin="50,0" HorizontalOptions="Fill" VerticalOptions="Center">
+        <Grid Style="{StaticResource LoginGridStyle}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -17,12 +18,12 @@
             </Grid.ColumnDefinitions>
             <StackLayout Margin="0,0,0,30" Grid.Row="0" Grid.ColumnSpan="2">
                 <Image Source="car.png" Margin="0,35,0,0" HeightRequest="200" Scale="1" ></Image>
-                <Label HorizontalOptions="Center" FontAttributes="Italic" Text="Carbnb." FontSize="60" TextColor="#ffffff"/>
+                <Label Style="{StaticResource LoginLabelStyle}" Text="Carbnb." />
             </StackLayout>
-            <Entry Grid.Row="1" Grid.ColumnSpan="2" Placeholder="Username" PlaceholderColor="White" TextColor="White" HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing" Text="{Binding User.Username}"></Entry>
-            <Entry Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Password" PlaceholderColor="White" TextColor="White" HorizontalTextAlignment="Center" ClearButtonVisibility="WhileEditing" IsPassword="True" Text="{Binding User.Password}"></Entry>
-            <Button Grid.Row="3" Grid.Column="0" TextColor="LightSalmon" BackgroundColor="White" CornerRadius="30" Text="Log In" Command="{Binding LogInCommand}"></Button>
-            <Button Grid.Row="3" Grid.Column="1" TextColor="LightSalmon" BackgroundColor="White" CornerRadius="30" Text="Sign Up" Command="{Binding SignUpCommand}"></Button>
+            <Entry Style="{StaticResource DefaultEntryStyle}" Grid.Row="1" Grid.ColumnSpan="2" Placeholder="Username" Text="{Binding User.Username}"></Entry>
+            <Entry Style="{StaticResource DefaultEntryStyle}" Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Password" IsPassword="True" Text="{Binding User.Password}"></Entry>
+            <Button Style="{StaticResource DefaultButtonStyle}" Grid.Row="3" Grid.Column="0" Text="Log In" Command="{Binding LogInCommand}"></Button>
+            <Button Style="{StaticResource DefaultButtonStyle}" Grid.Row="3" Grid.Column="1" Text="Sign Up" Command="{Binding SignUpCommand}"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
