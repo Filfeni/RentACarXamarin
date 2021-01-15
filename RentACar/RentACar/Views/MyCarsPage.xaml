@@ -9,6 +9,12 @@
         <StackLayout>
             <Label Style="{StaticResource MyCarsLabelStyle}" Text="Cars you have registered."/>
             <CollectionView ItemsSource="{Binding CarList}" SelectedItem="{Binding SelectedCar}" SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="help.png"></Image>
+                        <Label TextColor="White" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="You have no cars registered."></Label>
+                    </StackLayout>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Spacing="10">

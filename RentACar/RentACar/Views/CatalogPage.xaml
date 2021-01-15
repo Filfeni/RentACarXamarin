@@ -7,7 +7,10 @@
     <ContentPage.Content>
         <CollectionView Style="{StaticResource CatalogCollectionViewStyle}" ItemsSource="{Binding PostList}" SelectedItem="{Binding SelectedPost}">
             <CollectionView.EmptyView>
-                <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="No results matched your filter."></Label>
+                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image Source="help.png"></Image>
+                    <Label TextColor="White" HorizontalTextAlignment="Center" FontAttributes="Bold" Text="No results matched your filter."></Label>
+                </StackLayout>
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate>

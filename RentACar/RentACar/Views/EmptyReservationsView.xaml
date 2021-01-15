@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RentACar.Views.EmptyReservationsView"
              Style="{StaticResource ContentPageColor}">
-  <ContentView.Content>
-      <StackLayout>
-            <Label  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="You have not reserved a car yet!" />
-      </StackLayout>
-  </ContentView.Content>
+    <ContentView.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Image Source="help.png"></Image>
+            <Label HorizontalTextAlignment="Center" TextColor="White"  Text="You have not reserved a car yet!" />
+        </StackLayout>
+    </ContentView.Content>
 </ContentView>
