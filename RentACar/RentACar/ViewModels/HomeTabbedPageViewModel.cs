@@ -5,9 +5,8 @@ namespace RentACar.ViewModels
 {
     public class HomeTabbedPageViewModel : BaseViewModel, INavigatedAware
     {
-        public INavigationService NavigationService;
-        public IAuthService AuthService;
-        public HomeTabbedPageViewModel(INavigationService navigationService, IAuthService authService)
+        public IAuthService AuthService { get; set; }
+        public HomeTabbedPageViewModel(INavigationService navigationService, IAuthService authService) : base(navigationService)
         {
             NavigationService = navigationService;
             AuthService = authService;

@@ -11,9 +11,8 @@ namespace RentACar.ViewModels
 {
     public class LogInPageViewModel : BaseViewModel
     {
-        public INavigationService NavigationService;
-        public IApiService ApiService;
-        public IPageDialogService DialogService;
+        public IApiService ApiService { get; set; }
+        public IPageDialogService DialogService { get; set; }
 
         public DelegateCommand LogInCommand { get; private set; }
         public DelegateCommand SignUpCommand { get; private set; }
@@ -21,7 +20,7 @@ namespace RentACar.ViewModels
         public UserLogin User { get; set; }
         public HttpResponseMessage LogInResponse { get; set; }
         public HttpResponseMessage UserIdResponse { get; set; }
-        public LogInPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService)
+        public LogInPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService) : base(navigationService)
         {
             NavigationService = navigationService;
             ApiService = apiService;
@@ -35,7 +34,7 @@ namespace RentACar.ViewModels
 
         public async void LogIn()
         {
-            LogInResponse = await ApiService.LoginUser(User);
+            LogInResponse = await ApiService.LoginUserAsync(User);
             if (LogInResponse.IsSuccessStatusCode)
             {
                 

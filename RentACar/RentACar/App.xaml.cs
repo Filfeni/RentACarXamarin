@@ -12,7 +12,7 @@ namespace RentACar
     {
         public App(IPlatformInitializer platformInitializer) : base(platformInitializer)
         {
-            InitializeComponent();
+            
         }
 
         protected override void OnStart()
@@ -55,6 +55,7 @@ namespace RentACar
 
         protected override void OnInitialized()
         {
+            InitializeComponent();
             NavigationService.NavigateAsync(Config.HomeTabbedPageNavigation);
         }
     }

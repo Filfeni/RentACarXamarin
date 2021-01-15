@@ -12,14 +12,13 @@ namespace RentACar.ViewModels
 {
     public class CatalogPageViewModel : BaseViewModel, IInitialize
     {
-        public INavigationService NavigationService;
-        public IApiService ApiService;
-        public IPageDialogService DialogService;
-        public IAuthService AuthorizationService;
+        public IApiService ApiService { get; set; }
+        public IPageDialogService DialogService { get; set; }
+        public IAuthService AuthorizationService { get; set; }
         public DelegateCommand<Post> RentCarCommand { get; set; }
         public ObservableCollection<Post> PostList { get; set; }
         public Post SelectedPost { get; set; }
-        public CatalogPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
+        public CatalogPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService) : base(navigationService)
         {
             NavigationService = navigationService;
             ApiService = apiService;
@@ -44,7 +43,7 @@ namespace RentACar.ViewModels
             {
                 return;
             }
-            HttpResponseMessage catalogResponse = await ApiService.SearchCatalog(query);
+            HttpResponseMessage catalogResponse = await ApiService.SearchCatalogAsync(query);
             if (catalogResponse.IsSuccessStatusCode || catalogResponse.StatusCode == HttpStatusCode.NotFound)
             {
                 string responseContent = await catalogResponse.Content.ReadAsStringAsync();

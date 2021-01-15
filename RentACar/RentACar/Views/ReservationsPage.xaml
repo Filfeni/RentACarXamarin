@@ -3,35 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:RentACar.Views"
              x:Class="RentACar.Views.ReservationsPage"
-             Title="Reservations">
+             Title="Reservations" BackgroundColor="LightGray">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand" Margin="10">
+
             <CollectionView ItemsSource="{Binding ReservationList}">
                 <CollectionView.EmptyView>
                     <views:EmptyReservationsView></views:EmptyReservationsView>
                 </CollectionView.EmptyView>
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Span="2" Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Car.Model}"></Label>
-                            <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Car.LicensePlate}"></Label>
-                            <Label Grid.Row="2" Grid.Column="0" Text="{Binding StartDate}"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding EndDate}"></Label>
-                        </Grid>
+                        <Frame CornerRadius="15" HorizontalOptions="CenterAndExpand">
+                            <Grid HeightRequest="100">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Grid.ColumnSpan="4" Text="{Binding Car.Model}" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding Car.LicensePlate}" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="2" Grid.Column="0" Text="Starting date:" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding StartDate}"></Label>
+                                <Label Grid.Row="2" Grid.Column="2" Text="Ending date:" FontAttributes="Bold"></Label>
+                                <Label Grid.Row="2" Grid.Column="3" Text="{Binding EndDate}"></Label>
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Label Text="Your reservations." FontSize="Title" TextColor="#000000"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

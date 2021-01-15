@@ -11,10 +11,9 @@ namespace RentACar.ViewModels
 {
     public class MyCarsPageViewModel : BaseViewModel, IInitialize
     {
-        public INavigationService NavigationService;
-        public IApiService ApiService;
-        public IPageDialogService DialogService;
-        public IAuthService AuthorizationService;
+        public IApiService ApiService { get; set; }
+        public IPageDialogService DialogService { get; set; }
+        public IAuthService AuthorizationService { get; set; }
         public Car SelectedCar { get; set; }
         public Response Response { get; set; }
         public ObservableCollection<Car> CarList { get; set; }
@@ -23,13 +22,14 @@ namespace RentACar.ViewModels
         public DelegateCommand<Car> CarDetailsCommand { get; private set; }
         public DelegateCommand<Car> CreatePostCommand { get; private set; }
         public DelegateCommand<Car> DeletePostCommand { get; private set; }
-        public MyCarsPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
+        public MyCarsPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService) : base(navigationService)
         {
             NavigationService = navigationService;
             ApiService = apiService;
             DialogService = dialogService;
             AuthorizationService = authorizationService;
             CarList = new ObservableCollection<Car>();
+            AddCarCommand = new DelegateCommand(AddCar);
             DeleteCarCommand = new DelegateCommand<Car>(DeleteCar);
             CarDetailsCommand = new DelegateCommand<Car>(CarDetails);
             CreatePostCommand = new DelegateCommand<Car>(CreatePost);
@@ -49,7 +49,7 @@ namespace RentACar.ViewModels
                 return;
             }
             await AuthorizationService.Authorize();
-            HttpResponseMessage carsRequest = await ApiService.DeleteMyCar(car.CarId);
+            HttpResponseMessage carsRequest = await ApiService.DeleteMyCarAsync(car.CarId);
             if (carsRequest.IsSuccessStatusCode)
             {
                 string responseContent = await carsRequest.Content.ReadAsStringAsync();
@@ -78,7 +78,7 @@ namespace RentACar.ViewModels
                 return;
             }
             await AuthorizationService.Authorize();
-            HttpResponseMessage postResponse = await ApiService.DeletePost(car.CarId);
+            HttpResponseMessage postResponse = await ApiService.DeletePostAsync(car.CarId);
             if (postResponse.IsSuccessStatusCode)
             {
                 string responseContent = await postResponse.Content.ReadAsStringAsync();
@@ -104,7 +104,7 @@ namespace RentACar.ViewModels
             {
                 return;
             }
-            HttpResponseMessage carsRequest = await ApiService.GetMyCars();
+            HttpResponseMessage carsRequest = await ApiService.GetMyCarsAsync();
             if (carsRequest.IsSuccessStatusCode)
             {
                 string responseContent = await carsRequest.Content.ReadAsStringAsync();
@@ -122,7 +122,7 @@ namespace RentACar.ViewModels
             {
                 return;
             }
-            HttpResponseMessage carsRequest = await ApiService.GetMyCars();
+            HttpResponseMessage carsRequest = await ApiService.GetMyCarsAsync();
             if (carsRequest.IsSuccessStatusCode)
             {
                 string responseContent = await carsRequest.Content.ReadAsStringAsync();

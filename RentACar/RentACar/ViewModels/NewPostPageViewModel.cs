@@ -12,12 +12,11 @@ namespace RentACar.ViewModels
     {
         public Post NewPost { get; set; }
         public DelegateCommand CreatePostCommand { get; set; }
-        public INavigationService NavigationService;
-        public IApiService ApiService;
-        public IPageDialogService DialogService;
-        public IAuthService AuthorizationService;
+        public IApiService ApiService { get; set; }
+        public IPageDialogService DialogService { get; set; }
+        public IAuthService AuthorizationService { get; set; }
 
-        public NewPostPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
+        public NewPostPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService) : base(navigationService)
         {
             NavigationService = navigationService;
             ApiService = apiService;
@@ -29,7 +28,7 @@ namespace RentACar.ViewModels
 
         private async void CreatePost()
         {
-            HttpResponseMessage registerPostResponse = await ApiService.CreatePost(NewPost);
+            HttpResponseMessage registerPostResponse = await ApiService.CreatePostAsync(NewPost);
             if (registerPostResponse.IsSuccessStatusCode)
             {
                 string responseContent = await registerPostResponse.Content.ReadAsStringAsync();
@@ -45,8 +44,13 @@ namespace RentACar.ViewModels
             }
         }
 
-        public void Initialize(INavigationParameters parameters)
+        public async void Initialize(INavigationParameters parameters)
         {
+            bool isAuthorized = await AuthorizationService.Authorize();
+            if (!isAuthorized)
+            {
+                return;
+            }
             NewPost.CarId = parameters.GetValue<int>(nameof(NewPost.CarId));
         }
 

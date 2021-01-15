@@ -5,12 +5,15 @@
             xmlns:local="clr-namespace:RentACar.Views"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
-            android:TabbedPage.IsSwipePagingEnabled="False">
+            android:TabbedPage.IsSwipePagingEnabled="False"
+            android:TabbedPage.BarItemColor="#ffffff"
+            Style="{StaticResource MainTabStyle}">
   <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
-        <local:ExplorePage/>
-        <local:MyCarsPage/>
-        <local:ReservationsPage/>
-        <local:MorePage/>
+        <local:ExplorePage IconImageSource="exploreicon"/>
+        <local:MyCarsPage IconImageSource="mycarsicon"/>
+        <local:ReservationsPage IconImageSource="calendaricon"/>
+        <local:MorePage IconImageSource="moreicon"/>
     </TabbedPage.Children>
 </TabbedPage>
+    

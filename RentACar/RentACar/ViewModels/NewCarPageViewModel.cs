@@ -14,10 +14,9 @@ namespace RentACar.ViewModels
 {
     public class NewCarPageViewModel : BaseViewModel, IInitialize
     {
-        public INavigationService NavigationService;
-        public IApiService ApiService;
-        public IPageDialogService DialogService;
-        public IAuthService AuthorizationService;
+        public IApiService ApiService { get; set; }
+        public IPageDialogService DialogService { get; set; }
+        public IAuthService AuthorizationService { get; set; }
         public Car NewCar { get; set; }
         public Brand SelectedBrand { get; set; }
         public Category SelectedCategory { get; set; }
@@ -28,7 +27,7 @@ namespace RentACar.ViewModels
         public UserIdResponse CurrentUserId { get; set; }
         public DelegateCommand AddCarCommand { get; set; }
 
-        public NewCarPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
+        public NewCarPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService) : base(navigationService)
         {
             NavigationService = navigationService;
             ApiService = apiService;
@@ -40,15 +39,15 @@ namespace RentACar.ViewModels
 
         public async void Initialize(INavigationParameters parameters)
         {
-            bool confirmed = await DialogService.DisplayAlertAsync("Alert", "Are you sure you want to delete this car?", "Yes", "No");
-            if (!confirmed)
+            bool isAuthorized = await AuthorizationService.Authorize();
+            if (!isAuthorized)
             {
                 return;
             }
-            var useridTask = ApiService.GetUserId();
-            var brandsTask = ApiService.GetBrands();
-            var categoriesTask = ApiService.GetCategories();
-            var fuelTask = ApiService.GetFuelTypes();
+            var useridTask = ApiService.GetUserIdAsync();
+            var brandsTask = ApiService.GetBrandsAsync();
+            var categoriesTask = ApiService.GetCategoriesAsync();
+            var fuelTask = ApiService.GetFuelTypesAsync();
             
             await Task.WhenAll(brandsTask, fuelTask, categoriesTask, useridTask);
             HashSet<HttpResponseMessage> list = 
@@ -82,7 +81,7 @@ namespace RentACar.ViewModels
             NewCar.BrandId = SelectedBrand.Id;
             NewCar.CategoryId = SelectedCategory.Id;
             NewCar.FuelTypeId = SelectedFuelType.Id;
-            HttpResponseMessage registerCarResponse = await ApiService.PostCar(NewCar);
+            HttpResponseMessage registerCarResponse = await ApiService.PostCarAsync(NewCar);
             if (registerCarResponse.IsSuccessStatusCode)
             {
                 string responseContent = await registerCarResponse.Content.ReadAsStringAsync();

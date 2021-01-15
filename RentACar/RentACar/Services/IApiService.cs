@@ -7,28 +7,28 @@ namespace RentACar.Services
     public interface IApiService
     {
         // AUTHENTICATE
-        Task<HttpResponseMessage> LoginUser(UserLogin user);
-        Task<HttpResponseMessage> RegisterUser(UserRegister user);
-        Task<HttpResponseMessage> GetUserId();
+        Task<HttpResponseMessage> LoginUserAsync(UserLogin user);
+        Task<HttpResponseMessage> RegisterUserAsync(UserRegister user);
+        Task<HttpResponseMessage> GetUserIdAsync();
         // CATALOG
-        Task<HttpResponseMessage> SearchCatalog(string query);
+        Task<HttpResponseMessage> SearchCatalogAsync(string query);
         // MYCARS
-        Task<HttpResponseMessage> GetMyCars();
-        Task<HttpResponseMessage> PostCar(Car car);
-        Task<HttpResponseMessage> DeleteMyCar(int id);
-        Task<HttpResponseMessage> CreatePost(Post post);
-        Task<HttpResponseMessage> DeletePost(int id);
+        Task<HttpResponseMessage> GetMyCarsAsync();
+        Task<HttpResponseMessage> PostCarAsync(Car car);
+        Task<HttpResponseMessage> DeleteMyCarAsync(int id);
+        Task<HttpResponseMessage> CreatePostAsync(Post post);
+        Task<HttpResponseMessage> DeletePostAsync(int id);
 
         // RESERVATIONS
-        Task<HttpResponseMessage> GetMyReservations();
-        Task<HttpResponseMessage> GetReservationDates(int carid);
-        Task<HttpResponseMessage> PostReservation(Reservation reservation);
+        Task<HttpResponseMessage> GetMyReservationsAsync();
+        Task<HttpResponseMessage> GetReservationDatesAsync(int carid);
+        Task<HttpResponseMessage> PostReservationAsync(Reservation reservation);
 
         // CONSTANTS
-        Task<HttpResponseMessage> GetBrands();
-        Task<HttpResponseMessage> GetReservationTypes();
-        Task<HttpResponseMessage> GetFuelTypes();
-        Task<HttpResponseMessage> GetCategories();
+        Task<HttpResponseMessage> GetBrandsAsync();
+        Task<HttpResponseMessage> GetReservationTypesAsync();
+        Task<HttpResponseMessage> GetFuelTypesAsync();
+        Task<HttpResponseMessage> GetCategoriesAsync();
         
     }
 }

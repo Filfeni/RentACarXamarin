@@ -9,11 +9,37 @@
     Secondary #ff9800
     Secondary Light #ffc947
     Secondary Dark #c66900-->
-    <prism:PrismApplication.Resources>
+    <Application.Resources>
         <ResourceDictionary>
-            <Style x:Key="Example" TargetType="Frame">
-                <Setter Property="BorderColor" Value="#000000"></Setter>
+            <Style x:Key="MainTabStyle" TargetType="TabbedPage">
+                <Setter Property="BarBackgroundColor" Value="#ff5722"></Setter>
+                <Setter Property="BarTextColor" Value="#ffffff" />
             </Style>
+            <Style x:Key="MainTabLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#000000"/>
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="20,20,20,20" />
+            </Style>
+            <Style x:Key="MainTabButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="#ffffff"/>
+                <Setter Property="BackgroundColor" Value="#ff9800"/>
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="CornerRadius" Value="30" />
+                <Setter Property="Margin" Value="10,0,10,0" />
+            </Style>
+            <Style x:Key="MainTabEntryStyle" TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="End" />
+                <Setter Property="Margin" Value="10,0" />
+            </Style>
+            <Style x:Key="MyCarsFrameStyle" TargetType="Frame">
+                <Setter Property="BorderColor" Value="#ff8a50" />
+                <Setter Property="BackgroundColor" Value="#ffffff" />
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+            
+            
         </ResourceDictionary>
-    </prism:PrismApplication.Resources>
+    </Application.Resources>
 </prism:PrismApplication>

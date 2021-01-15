@@ -29,7 +29,7 @@
                         <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding CarNavigation.Model}"></Label>
                         <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Description}"></Label>
                         <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Address}"></Label>
-                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Price}"></Label>
+                        <Label Grid.Row="3" Grid.Column="0" Text="{Binding Price, StringFormat='$RD {0}'}"></Label>
                         <Label Grid.Row="3" Grid.Column="1" Text="{Binding CarNavigation.Year}"></Label>
                     </Grid>
                 </DataTemplate>

@@ -16,10 +16,9 @@ namespace RentACar.ViewModels
 {
     public class RentPageViewModel : BaseViewModel, IInitialize
     {
-        public INavigationService NavigationService;
-        public IApiService ApiService;
-        public IPageDialogService DialogService;
-        public IAuthService AuthorizationService;
+        public IApiService ApiService { get; set; }
+        public IPageDialogService DialogService { get; set; }
+        public IAuthService AuthorizationService { get; set; }
         public Post Post { get; set; }
         public DateTime MaxDate { get { return DateTime.Now.Date.AddMonths(2); } }
         public DateTime MinDate { get { return DateTime.Now.Date; } }
@@ -29,7 +28,7 @@ namespace RentACar.ViewModels
         public DelegateCommand RentCommand { get; set; }
         public Reservation NewReservation { get; set; }
         public ReservationType SelectedReservationType { get; set; }
-        public RentPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
+        public RentPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService) : base(navigationService)
         {
             NavigationService = navigationService;
             ApiService = apiService;
@@ -51,9 +50,9 @@ namespace RentACar.ViewModels
                 return;
             }
             Post = parameters.GetValue<Post>("post");
-            var useridTask = ApiService.GetUserId();
-            var datesTask = ApiService.GetReservationDates(Post.CarId);
-            var reserveTypeTask = ApiService.GetReservationTypes();
+            var useridTask = ApiService.GetUserIdAsync();
+            var datesTask = ApiService.GetReservationDatesAsync(Post.CarId);
+            var reserveTypeTask = ApiService.GetReservationTypesAsync();
             
             await Task.WhenAll(useridTask, datesTask, reserveTypeTask);
             HashSet<HttpResponseMessage> list =
@@ -87,7 +86,7 @@ namespace RentACar.ViewModels
             NewReservation.ReservationTypeId = SelectedReservationType.Id;
             NewReservation.StartDate = SelectedRange.StartDate;
             NewReservation.EndDate = SelectedRange.EndDate;
-            HttpResponseMessage registerCarResponse = await ApiService.PostReservation(NewReservation);
+            HttpResponseMessage registerCarResponse = await ApiService.PostReservationAsync(NewReservation);
             if (registerCarResponse.IsSuccessStatusCode)
             {
                 string responseContent = await registerCarResponse.Content.ReadAsStringAsync();

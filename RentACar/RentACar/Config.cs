@@ -35,8 +35,8 @@ namespace RentACar
         public const string RegisterPage = "Register";
         public const string ReservationsPage = "Reservations";
 
-        public const string HomeTabbedPageNavigation = "/NavigationPage/HomeTabs";
-        public const string NewCarNavigation = "/NavigationPage/HomeTabs/NewCar";
+        public const string HomeTabbedPageNavigation = "/HomeTabs";
+        public const string NewCarNavigation = "/HomeTabs/NewCar";
         public const string LoginNavigation = "/NavigationPage/Login";
         public const string RegisterNavigation = "/NavigationPage/Login/Register";
 

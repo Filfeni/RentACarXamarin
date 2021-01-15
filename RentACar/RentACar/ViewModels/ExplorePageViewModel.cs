@@ -5,10 +5,9 @@ namespace RentACar.ViewModels
 {
     public class ExplorePageViewModel : BaseViewModel
     {
-        public INavigationService NavigationService { get; set; }
         public string SearchFilter { get; set; }
         public DelegateCommand SearchCommand { get; set; }
-        public ExplorePageViewModel(INavigationService navigationService)
+        public ExplorePageViewModel(INavigationService navigationService) : base(navigationService)
         {
             NavigationService = navigationService;
             SearchCommand = new DelegateCommand(Search);

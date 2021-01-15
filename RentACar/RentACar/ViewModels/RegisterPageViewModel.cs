@@ -10,14 +10,13 @@ namespace RentACar.ViewModels
 {
     public class RegisterPageViewModel : BaseViewModel
     {
-        public INavigationService NavigationService;
-        public IApiService ApiService;
-        public IPageDialogService DialogService;
+        public IApiService ApiService { get; set; }
+        public IPageDialogService DialogService { get; set; }
         public DelegateCommand SignUpCommand { get; set; }
         public UserRegister User { get; set; }
         public Response SubmitResponse { get; set; }
 
-        public RegisterPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService)
+        public RegisterPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService) : base(navigationService)
         {
             NavigationService = navigationService;
             ApiService = apiService;
@@ -28,7 +27,7 @@ namespace RentACar.ViewModels
 
         public async void SignUp()
         {
-            HttpResponseMessage registerRequest = await ApiService.RegisterUser(User);
+            HttpResponseMessage registerRequest = await ApiService.RegisterUserAsync(User);
             if (registerRequest.IsSuccessStatusCode)
             {
                 string responseContent = await registerRequest.Content.ReadAsStringAsync();

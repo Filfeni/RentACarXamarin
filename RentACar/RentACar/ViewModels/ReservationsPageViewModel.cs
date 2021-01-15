@@ -11,12 +11,11 @@ namespace RentACar.ViewModels
 {
     public class ReservationsPageViewModel : BaseViewModel, IInitialize
     {
-        public INavigationService NavigationService;
-        public IApiService ApiService;
-        public IPageDialogService DialogService;
-        public IAuthService AuthorizationService;
+        public IApiService ApiService { get; set; }
+        public IPageDialogService DialogService { get; set; }
+        public IAuthService AuthorizationService { get; set; }
         public ObservableCollection<Reservation> ReservationList { get; set; }
-        public ReservationsPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService)
+        public ReservationsPageViewModel(INavigationService navigationService, IApiService apiService, IPageDialogService dialogService, IAuthService authorizationService) : base(navigationService)
         {
             NavigationService = navigationService;
             ApiService = apiService;
@@ -30,7 +29,7 @@ namespace RentACar.ViewModels
             {
                 return;
             }
-            HttpResponseMessage reservationsRequest = await ApiService.GetMyReservations();
+            HttpResponseMessage reservationsRequest = await ApiService.GetMyReservationsAsync();
             if (reservationsRequest.IsSuccessStatusCode || reservationsRequest.StatusCode == HttpStatusCode.NotFound)
             {
                 string responseContent = await reservationsRequest.Content.ReadAsStringAsync();

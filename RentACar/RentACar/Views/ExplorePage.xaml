@@ -6,9 +6,9 @@
     <ContentPage.Content>
         <StackLayout>
             <Image Aspect="AspectFill" Source="explorebackground.jpg"></Image>
-            <Entry Placeholder="¿What car are you looking for?" Text="{Binding SearchFilter}"/>
-            <Label Text="Go on a trip"></Label>
-            <Button Text="Search" Command="{Binding SearchCommand}"></Button>
+            <Label Style="{StaticResource MainTabLabelStyle}" Text="Go on a trip."></Label>
+            <Entry Style="{StaticResource MainTabEntryStyle}" Placeholder="¿What car are you looking for?" Text="{Binding SearchFilter}"/>
+            <Button Style="{StaticResource MainTabButtonStyle}" Text="Search" Command="{Binding SearchCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
