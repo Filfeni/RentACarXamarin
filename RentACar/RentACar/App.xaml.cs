@@ -49,7 +49,7 @@ namespace RentACar
             containerRegistry.RegisterForNavigation<ReservationsPage, ReservationsPageViewModel>(Config.ReservationsPage);
             containerRegistry.RegisterForNavigation<RentPage, RentPageViewModel>(Config.RentPage);
             containerRegistry.Register<EmptyReservationsView>();
-            containerRegistry.Register<IApiService,ApiService>();
+            containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.Register<IAuthService, AuthService>();
         }
 
